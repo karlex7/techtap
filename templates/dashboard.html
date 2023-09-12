@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Dashboard</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="collection">
+                {% for category, message in messages %}
+                    <li class="collection-item {{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <p>Welcome to the dashboard! Use the navigation above to explore the app.</p>
+{% endblock %}
