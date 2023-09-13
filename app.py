@@ -12,7 +12,7 @@ app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Kj8x23kk@localhost:5432/techtap'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Kj8x23kk@techta-y90i.cqukbkkjztbh.eu-west-1.rds.amazonaws.com:5432/techtap'
 app.config['SECRET_KEY'] = 'your_secret_key_here'
-app.config['SERVER_NAME'] = 'https://3wnn6fcrkk.execute-api.eu-west-1.amazonaws.com/'
+app.config['SERVER_NAME'] = '3wnn6fcrkk.execute-api.eu-west-1.amazonaws.com/'
 
 
 db = SQLAlchemy(app)
