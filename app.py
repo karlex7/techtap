@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 # Configuration for Flask, SQLAlchemy, and Flask-Login
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Kj8x23kk@localhost:5432/techtap'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://postgres:Kj8x23kk@techta-y90i.cqukbkkjztbh.eu-west-1.rds.amazonaws.com:5432/techtap'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Kj8x23kk@techta-y90i.cqukbkkjztbh.eu-west-1.rds.amazonaws.com:5432/techtap'
 app.config['SECRET_KEY'] = 'your_secret_key_here'
 
 db = SQLAlchemy(app)
