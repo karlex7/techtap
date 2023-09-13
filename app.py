@@ -9,7 +9,7 @@ from io import BytesIO
 app = Flask(__name__)
 
 # Configuration for Flask, SQLAlchemy, and Flask-Login
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///urls.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Kj8x23kk@localhost:5432/techtap'
 app.config['SECRET_KEY'] = 'your_secret_key_here'
 
 db = SQLAlchemy(app)
@@ -20,8 +20,8 @@ login_manager.init_app(app)
 login_manager.login_view = 'admin_login'  # specify the route for logging in
 
 # Dummy admin data for the sake of this example
-ADMIN_USERNAME = 'mychi'
-ADMIN_PASSWORD = 'gay'  # In a real-world scenario, you'd store a hashed password
+ADMIN_USERNAME = 'admin'
+ADMIN_PASSWORD = 'password123'  # In a real-world scenario, you'd store a hashed password
 
 class AdminUser(UserMixin):
     def __init__(self, username):
@@ -122,7 +122,4 @@ def generate_qr(short_url):
     return send_file(stream, mimetype="image/png")
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    #app.run(debug=True)
-    app.run(host="0.0.0.0", port=5000)
+    app.run(debug=True)
