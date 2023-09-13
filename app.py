@@ -12,8 +12,11 @@ app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Kj8x23kk@localhost:5432/techtap'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Kj8x23kk@techta-y90i.cqukbkkjztbh.eu-west-1.rds.amazonaws.com:5432/techtap'
 app.config['SECRET_KEY'] = 'your_secret_key_here'
+app.config['SERVER_NAME'] = 'https://3wnn6fcrkk.execute-api.eu-west-1.amazonaws.com/'
+
 
 db = SQLAlchemy(app)
+
 
 # Flask-Login Configuration
 login_manager = LoginManager()
@@ -60,7 +63,7 @@ def submit_url():
     db.session.add(new_url)
     db.session.commit()
     flash(f'Your short URL is: {request.host_url}{short_url}', 'success')
-    return redirect(url_for('dashboard'))
+    return redirect(url_for('dashboard', _external=True))
 
 @app.route('/<short_url>')
 def redirect_to_original(short_url):
@@ -88,7 +91,7 @@ def delete_url(id):
     db.session.delete(url)
     db.session.commit()
     flash('URL Deleted Successfully!', 'success')
-    return redirect(url_for('list_urls'))
+    return redirect(url_for('list_urls', _external=True))
 
 @app.route('/dashboard')
 @login_required
@@ -102,7 +105,7 @@ def admin_login():
         password = request.form['password']
         if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
             login_user(AdminUser(username))
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('dashboard', _external=True))
         else:
             flash('Invalid credentials.', 'danger')
     return render_template('admin_login.html')
@@ -111,7 +114,7 @@ def admin_login():
 @login_required
 def admin_logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('index, _external=True'))
 
 @app.route('/generate_qr/<short_url>')
 def generate_qr(short_url):
