@@ -122,4 +122,4 @@ def generate_qr(short_url):
     return send_file(stream, mimetype="image/png")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
