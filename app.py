@@ -5,6 +5,7 @@ import random
 import string
 import qrcode
 from io import BytesIO
+import os
 
 app = Flask(__name__)
 
@@ -12,7 +13,8 @@ app = Flask(__name__)
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Kj8x23kk@localhost:5432/techtap'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Kj8x23kk@techta-y90i.cqukbkkjztbh.eu-west-1.rds.amazonaws.com:5432/techtap'
 app.config['SECRET_KEY'] = 'your_secret_key_here'
-app.config['SERVER_NAME'] = '3wnn6fcrkk.execute-api.eu-west-1.amazonaws.com/'
+app.config['SERVER_NAME'] = os.environ.get('SERVER_NAME', 'default_value')
+
 
 
 db = SQLAlchemy(app)
@@ -126,5 +128,5 @@ def generate_qr(short_url):
     return send_file(stream, mimetype="image/png")
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")#, port=5000)
+    app.run(host='0.0.0.0', port=5000)
 
